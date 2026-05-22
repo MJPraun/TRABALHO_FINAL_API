@@ -1,43 +1,47 @@
 package com.serratec.clinica.dto;
 
-import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
+@Schema(description = "Dados para criação ou atualização de um Paciente")
 public class PacienteRequestDTO {
 
-    @NotBlank(message = "O nome é obrigatório e não pode ficar em branco.")
-    @Size(max = 100, message = "O nome não pode ultrapassar 100 caracteres.")
+    @Schema(description = "Nome completo do paciente", example = "Mário José Praun")
+    @NotBlank(message = "O nome do paciente é obrigatório.")
+    @Size(max = 100, message = "O nome não pode ter mais de 100 caracteres.")
     private String nome;
 
+    @Schema(description = "CPF com 11 dígitos (apenas números)", example = "12345678901")
     @NotBlank(message = "O CPF é obrigatório.")
-    @Size(min = 11, max = 11, message = "O CPF deve conter exatamente 11 dígitos.")
+    @Size(min = 11, max = 11, message = "O CPF deve conter 11 dígitos.")
     private String cpf;
 
+    @Schema(description = "E-mail do paciente", example = "mario@email.com")
     @NotBlank(message = "O e-mail é obrigatório.")
     @Email(message = "Insira um formato de e-mail válido.")
     private String email;
 
+    @Schema(description = "Telefone de contato", example = "21999999999")
     @NotBlank(message = "O telefone é obrigatório.")
     private String telefone;
 
+    @Schema(description = "Endereço residencial", example = "Rua de Teresópolis, 100")
     @NotBlank(message = "O endereço é obrigatório.")
     private String endereco;
 
+    @Schema(description = "Data de nascimento", example = "1972-03-15")
     @NotNull(message = "A data de nascimento é obrigatória.")
-    @Past(message = "A data de nascimento deve ser uma data no passado.")
     private LocalDate dataNascimento;
 
-    public PacienteRequestDTO() {
-    }
+    @Schema(description = "Histórico médico inicial para abrir o prontuário", example = "Hipertensão leve, sem alergias.")
+    @NotBlank(message = "O histórico médico inicial é obrigatório para abertura do prontuário.")
+    private String historicoMedicoInicial;
 
-    public PacienteRequestDTO(String nome, String cpf, String email, String telefone, String endereco,
-            LocalDate dataNascimento) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.dataNascimento = dataNascimento;
+    public PacienteRequestDTO() {
     }
 
     public String getNome() {
@@ -86,5 +90,13 @@ public class PacienteRequestDTO {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getHistoricoMedicoInicial() {
+        return historicoMedicoInicial;
+    }
+
+    public void setHistoricoMedicoInicial(String historicoMedicoInicial) {
+        this.historicoMedicoInicial = historicoMedicoInicial;
     }
 }
