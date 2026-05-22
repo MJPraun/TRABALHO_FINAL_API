@@ -46,6 +46,9 @@
 
 [cite_start]*Nota de integridade:* Utilizou-se o isolamento por DTOs e mapeamentos adequados para evitar problemas de JSON recursivo/infinito na serialização dos relacionamentos[cite: 54, 127].
 
+## 📸 Demonstração do Swagger
+* [Tela Inicial do Swagger](imagens/SWAGGER_PACIENTE_MEDICO_CONSULTA.png)
+* [Teste de Endpoint](imagens/SWAGGER_GET_PACINTE_200_OK.png)
 ---
 
 ## 🔧 Instruções de Execução e Pré-requisitos
